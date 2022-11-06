@@ -656,7 +656,6 @@ activities. If you have problems, **PLEASE**, file them on the issue tracker.
 [16]: http://docs.python-requests.org/en/latest/
 [17]: https://pip.pypa.io/en/latest/
 [18]: http://ww45.python-distribute.org/pip_distribute.png
-[19]: https://pypi.python.org/pypi/six/
 [20]: https://www.coursera.org/about/terms
 [22]: https://pypi.python.org/
 [23]: https://pypi.python.org/pypi/coursera-dl

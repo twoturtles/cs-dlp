@@ -5,8 +5,6 @@ import os
 import re
 from io import open
 
-from six import iteritems
-
 from coursera.define import IN_MEMORY_MARKER
 from coursera.utils import BeautifulSoup
 
@@ -28,7 +26,7 @@ def links_to_plain_text(links):
     @rtype: str
     """
     result = []
-    for filetype, contents in iteritems(links):
+    for filetype, contents in links.items():
         if filetype != 'html':
             continue
 

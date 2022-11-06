@@ -14,8 +14,7 @@ import requests
 import urllib
 
 from collections import namedtuple, OrderedDict
-from six import iterkeys, iteritems
-from six.moves.urllib_parse import quote_plus
+from urllib.parse import quote_plus
 import attr
 
 from .utils import (BeautifulSoup, make_coursera_absolute_url,
@@ -1061,11 +1060,11 @@ class CourseraOnDemand(object):
         subtitle_link = self._extract_subtitles_from_video_dom(
             dom, subtitle_language, video_id)
 
-        for key, value in iteritems(subtitle_link):
+        for key, value in subtitle_link.items():
             video_content[key] = value
 
         lecture_video_content = {}
-        for key, value in iteritems(video_content):
+        for key, value in video_content.items():
             lecture_video_content[key] = [(value, '')]
 
         return lecture_video_content
@@ -1535,7 +1534,7 @@ class CourseraOnDemand(object):
         """
         # Extract asset tags from instructions text
         asset_tags_map = self._extract_asset_tags(text)
-        ids = list(iterkeys(asset_tags_map))
+        ids = list(asset_tags_map.keys())
         if not ids:
             return {}
 

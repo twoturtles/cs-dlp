@@ -5,8 +5,7 @@ This module contains filtering functions.
 import re
 import logging
 
-from six import iteritems
-from six.moves.urllib_parse import urlparse
+from urllib.parse import urlparse
 
 
 # These formats are trusted and are not skipped
@@ -93,7 +92,7 @@ def find_resources_to_get(lecture, file_formats, resource_filter, ignored_format
     if len(ignored_formats):
         logging.info("The following file formats will be ignored: " + ",".join(ignored_formats))
 
-    for fmt, resources in iteritems(lecture):
+    for fmt, resources in lecture.items():
         fmt0 = fmt
 
         short_fmt = None

@@ -7,7 +7,7 @@ Test syllabus parsing.
 
 import os.path
 import requests
-from six.moves import http_cookiejar as cookielib
+from http import cookiejar as cookielib
 
 from coursera import cookies
 

@@ -11,7 +11,6 @@ import json
 from time import time
 
 import requests
-import six
 
 from mock import Mock
 from coursera import utils
@@ -77,17 +76,9 @@ def test_get_anchor_format(url, format):
 
 def test_random_string():
     random.seed(0)  # set seed for reproducible tests
-
     res = utils.random_string(8)
     assert len(res) == 8
-
-    # Python 2 and Python 3 use different strategies for generation of
-    # PRNG, according to the documentation available at
-    # https://docs.python.org/3.4/library/random.html#random.seed
-    if six.PY2:
-        assert res == '0UAqFzWs'
-    else:
-        assert res == '2yW4Acq9'
+    assert res == '2yW4Acq9'
 
 
 def test_fix_url_adds_scheme():
@@ -145,7 +136,7 @@ def test_decode_input():
 
     for encoded_input in encoded_inputs:
         decoded_input = utils.decode_input(encoded_input)
-        assert isinstance(decoded_input, six.text_type), "Decoded input is not a text type."
+        assert isinstance(decoded_input, str), "Decoded input is not a text type."
 
 
 def test_total_seconds():

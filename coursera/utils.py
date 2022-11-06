@@ -17,27 +17,15 @@ import datetime
 
 
 from bs4 import BeautifulSoup as BeautifulSoup_
-from xml.sax.saxutils import escape, unescape
+from xml.sax.saxutils import unescape as sax_unescape
 
-import six
-from six import iteritems
-from six.moves import html_parser
-from six.moves.urllib.parse import ParseResult
-from six.moves.urllib_parse import unquote_plus
-
-#  six.moves doesn’t support urlparse
-if six.PY3:  # pragma: no cover
-    from urllib.parse import urlparse, urljoin
-else:
-    from urlparse import urlparse, urljoin
-
-# Python3 (and six) don't provide string
-if six.PY3:
-    from string import ascii_letters as string_ascii_letters
-    from string import digits as string_digits
-else:
-    from string import letters as string_ascii_letters
-    from string import digits as string_digits
+import html
+from html.parser import HTMLParser
+from urllib.parse import ParseResult
+from urllib.parse import unquote_plus
+from urllib.parse import urlparse, urljoin
+from string import ascii_letters as string_ascii_letters
+from string import digits as string_digits
 
 from .define import COURSERA_URL, WINDOWS_UNC_PREFIX
 
@@ -47,15 +35,8 @@ from .define import COURSERA_URL, WINDOWS_UNC_PREFIX
 def BeautifulSoup(page): return BeautifulSoup_(page, 'html.parser')
 
 
-if six.PY2:
-    def decode_input(x):
-        stdin_encoding = sys.stdin.encoding
-        if stdin_encoding is None:
-            stdin_encoding = "UTF-8"
-        return x.decode(stdin_encoding)
-else:
-    def decode_input(x):
-        return x
+def decode_input(x):
+    return x
 
 
 def spit_json(obj, filename):
@@ -98,10 +79,9 @@ HTML_UNESCAPE_TABLE = dict((v, k) for k, v in HTML_ESCAPE_TABLE.items())
 
 
 def unescape_html(s):
-    h = html_parser.HTMLParser()
-    s = h.unescape(s)
+    s = html.unescape(s)
     s = unquote_plus(s)
-    return unescape(s, HTML_UNESCAPE_TABLE)
+    return sax_unescape(s, HTML_UNESCAPE_TABLE)
 
 
 def clean_filename(s, minimal_change=False):
@@ -114,8 +94,7 @@ def clean_filename(s, minimal_change=False):
     """
 
     # First, deal with URL encoded strings
-    h = html_parser.HTMLParser()
-    s = h.unescape(s)
+    s = html.unescape(s)
     s = unquote_plus(s)
 
     # Strip forbidden characters
@@ -284,7 +263,7 @@ def extend_supplement_links(destination, source):
         destination dictionary.
     @type source: @see CourseraOnDemand._extract_links_from_text
     """
-    for key, value in iteritems(source):
+    for key, value in source.items():
         if key not in destination:
             destination[key] = value
         else:

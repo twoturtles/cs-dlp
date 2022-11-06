@@ -17,8 +17,8 @@ except ImportError:
     from urllib3.poolmanager import PoolManager
 
 
-from six.moves import StringIO
-from six.moves import http_cookiejar as cookielib
+from io import StringIO
+from http import cookiejar as cookielib
 from .define import CLASS_URL, AUTH_REDIRECT_URL, PATH_COOKIES, AUTH_URL_V3
 from .utils import mkdir_p, random_string
 

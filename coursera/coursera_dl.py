@@ -55,7 +55,6 @@ from distutils.version import LooseVersion as V
 # Test versions of some critical modules.
 # We may, perhaps, want to move these elsewhere.
 import bs4
-import six
 import requests
 
 from .cookies import (
@@ -82,7 +81,6 @@ from coursera import __version__
 _SEE_URL = " See https://github.com/coursera-dl/coursera/issues/139"
 
 assert V(requests.__version__) >= V('2.4'), "Upgrade requests!" + _SEE_URL
-assert V(six.__version__) >= V('1.5'), "Upgrade six!" + _SEE_URL
 assert V(bs4.__version__) >= V('4.1'), "Upgrade bs4!" + _SEE_URL
 
 
