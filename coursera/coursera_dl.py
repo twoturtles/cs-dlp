@@ -66,7 +66,7 @@ from .workflow import CourseraDownloader
 from .parallel import ConsecutiveDownloader, ParallelDownloader
 from .utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
                     print_ssl_error_message,
-                    decode_input, BeautifulSoup, is_debug_run,
+                    BeautifulSoup, is_debug_run,
                     spit_json, slurp_json)
 
 from .api import expand_specializations

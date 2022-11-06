@@ -129,16 +129,6 @@ def test_fix_url_doesnt_alters_empty_url():
     assert utils.fix_url(url) == ""
 
 
-def test_decode_input():
-    encoded_inputs = [
-        str("/home/user/темп"),
-        str("22少女時代22")]
-
-    for encoded_input in encoded_inputs:
-        decoded_input = utils.decode_input(encoded_input)
-        assert isinstance(decoded_input, str), "Decoded input is not a text type."
-
-
 def test_total_seconds():
     ts = total_seconds(datetime.timedelta(days=30))
     assert ts == 2592000

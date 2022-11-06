@@ -31,12 +31,7 @@ from .define import COURSERA_URL, WINDOWS_UNC_PREFIX
 
 # Force us of bs4 with html.parser
 
-
 def BeautifulSoup(page): return BeautifulSoup_(page, 'html.parser')
-
-
-def decode_input(x):
-    return x
 
 
 def spit_json(obj, filename):
