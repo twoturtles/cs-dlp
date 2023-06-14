@@ -124,28 +124,11 @@ This will download [the latest released version][23] of the program from the
 [Python Package Index (PyPI)][22] along with *all* the necessary
 dependencies. At this point, you should be ready to start using it.
 
-If this does not work, because your Python 2 version is too old (e.g. 2.7.5
-on Ubuntu 14.4), try:
-
-    apt-get install python3 python3-pip
-    pip3 install coursera-dl
-
-instead.
-
 **Note 1:** We strongly recommend that you *don't* install the package
 globally on your machine (i.e., with root/administrator privileges), as the
 installed modules may conflict with other Python applications that you have
 installed in your system (or they can interfere with `coursera-dl`).  Prefer
 to use the option `--user` to `pip install`, if you need can.
-
-**Note 2:** As already mentioned, we *strongly* recommend that you use a new
-Python 3 interpreter (e.g., 3.9 or later), since Python 3 has better support
-for SSL/TLS (for secure connections) than earlier versions.<br/>
-If you must use Python 2, be sure that you have at least Python 2.7.9 (later
-versions are OK).<br/>
-Otherwise, you can still use `coursera-dl`, but you will have to install the
-extra package `ndg-httpsclient`, which may involve compilation (at least on
-Linux systems).
 
 ## Alternative ways of installing missing dependencies
 
