@@ -151,7 +151,8 @@ def get_credentials(username=None, password=None, netrc=None, use_keyring=False)
     if not username:
         raise CredentialsError(
             'Please provide a username with the -u option, '
-            'or a .netrc file with the -n option.')
+            'or a .netrc file with the -n option, '
+            'or a CAUTH cookie with the --cauth option')
 
     if not password and use_keyring:
         password = keyring.get_password(KEYRING_SERVICE_NAME, username)
