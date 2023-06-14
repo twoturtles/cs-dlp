@@ -100,13 +100,7 @@ relevant excerpt:
 
 # Installation instructions
 
-`coursera-dl` requires Python 2 or Python 3 and a free Coursera account
-enrolled in the class of interest. (As of February of 2020, we test
-automatically the execution of the program with Python versions 2.7, Pypy,
-3.6, 3.7, 3.8, and 3.9).
-
-**Note:** We *strongly* recommend that you use a Python 3 interpreter (3.9
-or later).
+`coursera-dl` requires Python 3 and a Coursera account enrolled in the class of interest.
 
 On any operating system, ensure that the Python executable location is added
 to your `PATH` environment variable and, once you have the dependencies
