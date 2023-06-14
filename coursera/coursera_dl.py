@@ -95,6 +95,48 @@ def get_session():
     return session
 
 
+def create_session(args):
+    session = get_session()
+    if args.cookies_cauth:
+        session.cookies.set('CAUTH', args.cookies_cauth)
+    elif args.browser:
+        def autocookie(browser):
+            import browser_cookie3
+            if browser=='chrome':
+                cj = browser_cookie3.chrome(domain_name='coursera.org')
+            elif browser=='chromium':
+                cj = browser_cookie3.chromium(domain_name='coursera.org')
+            elif browser=='opera':
+                cj = browser_cookie3.opera(domain_name='coursera.org')
+            elif browser=='opera_gx':
+                cj = browser_cookie3.opera_gx(domain_name='coursera.org')
+            elif browser=='brave':
+                cj = browser_cookie3.brave(domain_name='coursera.org')
+            elif browser=='edge':
+                cj = browser_cookie3.edge(domain_name='coursera.org')
+            elif browser=='vivaldi':
+                cj = browser_cookie3.vivaldi(domain_name='coursera.org')
+            elif browser=='firefox':
+                cj = browser_cookie3.firefox(domain_name='coursera.org')
+            elif browser=='librewolf':
+                cj = browser_cookie3.librewolf(domain_name='coursera.org')
+            elif browser=='safari':
+                cj = browser_cookie3.safari(domain_name='coursera.org')
+            else:
+                raise RuntimeError(f'Invalid browser {args.browser}')
+            for cookie in cj:
+                if cookie.name =='CAUTH':
+                    return cookie.value
+            else:
+                raise Exception('Can not find CAUTH in {args.browser}')
+        cauth_cookie = autocookie(args.browser)
+        logging.debug(f'Got CAUTH cookie from {args.browser}: "{cauth_cookie}"')
+        session.cookies.set('CAUTH', cauth_cookie)
+    else:
+        login(session, args.username, args.password)
+    return session
+
+
 def list_courses(args):
     """
     List enrolled courses.
@@ -102,11 +144,7 @@ def list_courses(args):
     @param args: Command-line arguments.
     @type args: namedtuple
     """
-    session = get_session()
-    if args.cookies_cauth:
-        session.cookies.set('CAUTH', args.cookies_cauth)
-    else:
-        login(session, args.username, args.password)
+    session = create_session(args)
     extractor = CourseraExtractor(session)
     courses = extractor.list_courses()
     logging.info('Found %d courses', len(courses))
@@ -233,11 +271,8 @@ def main():
         list_courses(args)
         return
 
-    session = get_session()
-    if args.cookies_cauth:
-        session.cookies.set('CAUTH', args.cookies_cauth)
-    else:
-        login(session, args.username, args.password)
+    session = create_session(args)
+
     if args.specialization:
         args.class_names = expand_specializations(session, args.class_names)
 
