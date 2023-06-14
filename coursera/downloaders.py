@@ -84,6 +84,8 @@ class ExternalDownloader(Downloader):
         if not self.bin:
             raise RuntimeError("No bin specified")
 
+        self._check_bin()
+
     def _prepare_cookies(self, command, url):
         """
         Extract cookies from the requests session and add them to the command
@@ -118,6 +120,18 @@ class ExternalDownloader(Downloader):
         Create command to execute in a subprocess.
         """
         raise NotImplementedError("Subclasses should implement this")
+
+    def _check_bin(self):
+        """
+        Make sure the downloader is installed
+        """
+        try:
+            ret = subprocess.run([self.bin, "--version"])
+        except FileNotFoundError:
+            raise RuntimeError(f"Downloader '{self.bin}' not found")
+
+        if(ret.returncode != 0):
+            raise RuntimeError(f"Downloader '{self.bin}' returned a non-zero exit status")
 
     def _start_download(self, url, filename, resume):
         command = self._create_command(url, filename)
