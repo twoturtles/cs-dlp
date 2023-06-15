@@ -9,13 +9,6 @@ import logging
 import os
 import platform
 
-try:
-    import keyring
-except ImportError:
-    keyring = None
-
-KEYRING_SERVICE_NAME = 'coursera-dl'
-
 
 class CredentialsError(BaseException):
     """
@@ -32,7 +25,7 @@ def _getenv_or_empty(s):
     """
     return os.getenv(s) or ""
 
-def get_credentials(username=None, password=None, use_keyring=False):
+def get_credentials(username=None, password=None):
     """
     Return valid username, password tuple.
 
@@ -44,12 +37,7 @@ def get_credentials(username=None, password=None, use_keyring=False):
             'Please provide a username with the -u option, '
             'or a CAUTH cookie with the --cauth option')
 
-    if not password and use_keyring:
-        password = keyring.get_password(KEYRING_SERVICE_NAME, username)
-
     if not password:
         password = getpass.getpass('Coursera password for {0}: '.format(username))
-        if use_keyring:
-            keyring.set_password(KEYRING_SERVICE_NAME, username, password)
 
     return username, password

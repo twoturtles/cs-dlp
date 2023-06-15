@@ -10,7 +10,7 @@ import configargparse as argparse
 
 from . import __version__
 
-from .credentials import get_credentials, CredentialsError, keyring
+from .credentials import get_credentials, CredentialsError
 
 LOCAL_CONF_FILE_NAME = 'coursera-dl.conf'
 
@@ -370,15 +370,6 @@ def parse_args(args=None):
         help='full path to the cookies.txt file')
 
     group_adv_auth.add_argument(
-        '-k',
-        '--keyring',
-        dest='use_keyring',
-        action='store_true',
-        default=False,
-        help='use keyring provided by operating system to '
-        'save and load credentials')
-
-    group_adv_auth.add_argument(
         '--clear-cache',
         dest='clear_cache',
         action='store_true',
@@ -484,14 +475,6 @@ def parse_args(args=None):
     args.file_formats = args.file_formats.split()
 
     # check arguments
-    if args.use_keyring and args.password:
-        logging.warning(
-            '--keyring and --password cannot be specified together')
-        args.use_keyring = False
-
-    if args.use_keyring and not keyring:
-        logging.warning('The python module `keyring` not found.')
-        args.use_keyring = False
 
     if args.cookies_file and not os.path.exists(args.cookies_file):
         logging.error('Cookies file not found: %s', args.cookies_file)
@@ -500,8 +483,7 @@ def parse_args(args=None):
     if not args.cookies_file and not args.cookies_cauth and not args.browser:
         try:
             args.username, args.password = get_credentials(
-                username=args.username, password=args.password,
-                use_keyring=args.use_keyring)
+                username=args.username, password=args.password)
         except CredentialsError as e:
             logging.error(e)
             sys.exit(1)
