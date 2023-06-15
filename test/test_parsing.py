@@ -46,7 +46,7 @@ def test_that_we_parse_and_write_json_correctly(get_page, json_path):
     coursera_dl.get_page = lambda x, y: raw_data
     open_mock = mock_open()
 
-    with patch('coursera.coursera_dl.open', open_mock, create=True):
+    with patch('cs_dlp.coursera_dl.open', open_mock, create=True):
         coursera_dl.download_about(object(), "networksonline-002", json_path)
 
     about_json = os.path.join(json_path, 'networksonline-002-about.json')
@@ -124,7 +124,7 @@ def test_parse(get_old_style_video, filename, num_sections, num_lectures,
         assert sum(r for f, r in resources if f == "mp4") == num_videos
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_get_on_demand_supplement_url_accumulates_assets(mocked):
     input = open(
         os.path.join(os.path.dirname(__file__),
