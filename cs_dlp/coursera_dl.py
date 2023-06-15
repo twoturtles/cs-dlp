@@ -74,7 +74,7 @@ from .network import get_page, get_page_and_url
 from .commandline import parse_args
 from .extractors import CourseraExtractor
 
-from coursera import __version__
+from . import __version__
 
 
 # URL containing information about outdated modules

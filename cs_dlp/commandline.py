@@ -8,7 +8,7 @@ import sys
 import logging
 import configargparse as argparse
 
-from coursera import __version__
+from . import __version__
 
 from .credentials import get_credentials, CredentialsError, keyring
 
