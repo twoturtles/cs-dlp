@@ -67,4 +67,9 @@ path = "cs_dlp/__init__.py"
 [tool.hatch.build.targets.sdist]
 include = [
     "/cs_dlp",
+    "/test"
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["/cs_dlp"]
+
