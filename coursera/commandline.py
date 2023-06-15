@@ -358,6 +358,7 @@ def parse_args(args=None):
                  "opera_gx", "brave", "edge",
                  "vivaldi", "firefox", "librewolf",
                  "safari"],
+        metavar="browser",
         help='Load CAUTH cookie from browser')
 
     group_adv_auth.add_argument(
