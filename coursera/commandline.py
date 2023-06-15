@@ -370,17 +370,6 @@ def parse_args(args=None):
         help='full path to the cookies.txt file')
 
     group_adv_auth.add_argument(
-        '-n',
-        '--netrc',
-        dest='netrc',
-        nargs='?',
-        action='store',
-        const=True,
-        default=False,
-        help='use netrc for reading passwords, uses default'
-        ' location if no path specified')
-
-    group_adv_auth.add_argument(
         '-k',
         '--keyring',
         dest='use_keyring',
@@ -512,7 +501,7 @@ def parse_args(args=None):
         try:
             args.username, args.password = get_credentials(
                 username=args.username, password=args.password,
-                netrc=args.netrc, use_keyring=args.use_keyring)
+                use_keyring=args.use_keyring)
         except CredentialsError as e:
             logging.error(e)
             sys.exit(1)

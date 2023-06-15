@@ -7,8 +7,7 @@ import json
 import pytest
 from mock import patch, Mock
 
-from coursera import api
-from coursera import define
+from coursera import api, define, create_session
 
 from coursera.test.utils import slurp_fixture, links_to_plain_text
 from coursera.utils import BeautifulSoup
@@ -627,17 +626,6 @@ def test_quiz_converter_all():
         # print('RESULT', result)
         with open('quiz_html/' + filename + '.html', 'w') as f:
             f.write(result)
-
-
-def create_session():
-    from coursera.coursera_dl import get_session
-    from coursera.credentials import get_credentials
-    from coursera.cookies import login
-
-    session = get_session()
-    username, password = get_credentials(netrc=expanduser('~/.netrc'))
-    login(session, username, password)
-    return session
 
 
 @patch('coursera.api.get_page')
