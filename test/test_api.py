@@ -7,10 +7,10 @@ import json
 import pytest
 from mock import patch, Mock
 
-from coursera import api, define, create_session
-
-from coursera.test.utils import slurp_fixture, links_to_plain_text
-from coursera.utils import BeautifulSoup
+from cs_dlp import api, define
+from cs_dlp.coursera_dl import create_session
+from .utils import slurp_fixture, links_to_plain_text
+from cs_dlp.utils import BeautifulSoup
 
 from requests.exceptions import HTTPError
 from requests import Response
@@ -23,7 +23,7 @@ def course():
     return course
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_programming_http_error(get_page, course):
     """
     This test checks that downloader skips locked programming assignments
@@ -36,7 +36,7 @@ def test_extract_links_from_programming_http_error(get_page, course):
     assert None == course.extract_links_from_programming('0')
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_exam_http_error(get_page, course):
     """
     This test checks that downloader skips locked exams
@@ -49,7 +49,7 @@ def test_extract_links_from_exam_http_error(get_page, course):
     assert None == course.extract_links_from_exam('0')
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_supplement_http_error(get_page, course):
     """
     This test checks that downloader skips locked supplements
@@ -62,7 +62,7 @@ def test_extract_links_from_supplement_http_error(get_page, course):
     assert None == course.extract_links_from_supplement('0')
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_lecture_http_error(get_page, course):
     """
     This test checks that downloader skips locked lectures
@@ -75,7 +75,7 @@ def test_extract_links_from_lecture_http_error(get_page, course):
     assert None == course.extract_links_from_lecture('fake_course_id', '0')
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_quiz_http_error(get_page, course):
     """
     This test checks that downloader skips locked quizzes
@@ -88,7 +88,7 @@ def test_extract_links_from_quiz_http_error(get_page, course):
     assert None == course.extract_links_from_quiz('0')
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_references_poll_http_error(get_page, course):
     """
     This test checks that downloader skips locked programming assignments
@@ -101,7 +101,7 @@ def test_extract_references_poll_http_error(get_page, course):
     assert None == course.extract_references_poll()
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_reference_http_error(get_page, course):
     """
     This test checks that downloader skips locked resources
@@ -114,7 +114,7 @@ def test_extract_links_from_reference_http_error(get_page, course):
     assert None == course.extract_links_from_reference('0')
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_programming_immediate_instructions_http_error(
         get_page, course):
     """
@@ -129,7 +129,7 @@ def test_extract_links_from_programming_immediate_instructions_http_error(
         None == course.extract_links_from_programming_immediate_instructions('0'))
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_programming_supplement_no_instructions(get_page, course):
     no_instructions = slurp_fixture(
         'json/supplement-programming-no-instructions.json')
@@ -139,7 +139,7 @@ def test_ondemand_programming_supplement_no_instructions(get_page, course):
     assert {} == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 @pytest.mark.parametrize(
     "input_filename,expected_output", [
         ('peer-assignment-instructions-all.json', 'intro Review criteria section'),
@@ -158,7 +158,7 @@ def test_ondemand_from_peer_assignment_instructions(
     assert expected_output == links_to_plain_text(output)
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_from_programming_immediate_instructions_no_instructions(
         get_page, course):
     no_instructions = slurp_fixture(
@@ -169,7 +169,7 @@ def test_ondemand_from_programming_immediate_instructions_no_instructions(
     assert {} == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_programming_supplement_empty_instructions(get_page, course):
     empty_instructions = slurp_fixture(
         'json/supplement-programming-empty-instructions.json')
@@ -185,7 +185,7 @@ def test_ondemand_programming_supplement_empty_instructions(get_page, course):
     assert {} == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_programming_immediate_instructions_empty_instructions(
         get_page, course):
     empty_instructions = slurp_fixture(
@@ -202,7 +202,7 @@ def test_ondemand_programming_immediate_instructions_empty_instructions(
     assert {} == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_programming_supplement_one_asset(get_page, course):
     one_asset_tag = slurp_fixture('json/supplement-programming-one-asset.json')
     one_asset_url = slurp_fixture('json/asset-urls-one.json')
@@ -223,7 +223,7 @@ def test_ondemand_programming_supplement_one_asset(get_page, course):
     assert expected_output == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_references_poll(get_page, course):
     """
     Test extracting course references.
@@ -237,7 +237,7 @@ def test_extract_references_poll(get_page, course):
     assert expected_output == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_programming_immediate_instructions_one_asset(get_page, course):
     one_asset_tag = slurp_fixture(
         'json/supplement-programming-immediate-instructions-one-asset.json')
@@ -259,7 +259,7 @@ def test_ondemand_programming_immediate_instructions_one_asset(get_page, course)
     assert expected_output == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_ondemand_programming_supplement_three_assets(get_page, course):
     three_assets_tag = slurp_fixture(
         'json/supplement-programming-three-assets.json')
@@ -281,7 +281,7 @@ def test_ondemand_programming_supplement_three_assets(get_page, course):
     assert expected_output == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_lecture_assets_typename_asset(get_page, course):
     open_course_assets_reply = slurp_fixture(
         'json/supplement-open-course-assets-reply.json')
@@ -298,7 +298,7 @@ def test_extract_links_from_lecture_assets_typename_asset(get_page, course):
     assert expected_output == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_extract_links_from_lecture_assets_typname_url_and_asset(get_page, course):
     """
     This test makes sure that _extract_links_from_lecture_assets grabs url
@@ -327,7 +327,7 @@ def test_extract_links_from_lecture_assets_typname_url_and_asset(get_page, cours
     assert expected_output == output
 
 
-@patch('coursera.api.get_page')
+@patch('cs_dlp.api.get_page')
 def test_list_courses(get_page, course):
     """
     Test course listing method.
@@ -517,7 +517,7 @@ class TestMarkupToHTMLConverter:
         </co-content>\n
         """) + self.STYLE == output
 
-    @patch('coursera.api.AssetRetriever')
+    @patch('cs_dlp.api.AssetRetriever')
     def test_replace_images(self, mock_asset_retriever):
         replies = {
             'nVhIAj61EeaGyBLfiQeo_w': Mock(data=b'a', content_type='image/png'),
@@ -550,7 +550,7 @@ class TestMarkupToHTMLConverter:
         </co-content>\n
         """) + self.STYLE == output
 
-    @patch('coursera.api.AssetRetriever')
+    @patch('cs_dlp.api.AssetRetriever')
     def test_replace_audios(self, mock_asset_retriever):
         replies = {
             'aWTK9sYwEeW7AxLLCrgDQQ': Mock(data=b'a', content_type='audio/mpeg'),
@@ -628,8 +628,8 @@ def test_quiz_converter_all():
             f.write(result)
 
 
-@patch('coursera.api.get_page')
-@patch('coursera.api.get_reply')
+@patch('cs_dlp.api.get_page')
+@patch('cs_dlp.api.get_reply')
 def test_asset_retriever(get_reply, get_page):
     reply = json.loads(slurp_fixture('json/asset-retriever/assets-reply.json'))
     get_page.side_effect = [reply]

@@ -4,9 +4,9 @@
 Test the downloaders.
 """
 
-from coursera import downloaders
-from coursera import coursera_dl
-from coursera.filtering import find_resources_to_get
+from cs_dlp import downloaders
+from cs_dlp import coursera_dl
+from cs_dlp.filtering import find_resources_to_get
 
 import pytest
 

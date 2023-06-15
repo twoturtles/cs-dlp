@@ -13,14 +13,14 @@ from time import time
 import requests
 
 from mock import Mock
-from coursera import utils
-from coursera import coursera_dl
-from coursera import api
 
-from coursera.test.utils import slurp_fixture
-from coursera.formatting import (format_section, format_resource,
+from cs_dlp import utils
+from cs_dlp import coursera_dl
+from cs_dlp import api
+from .utils import slurp_fixture
+from cs_dlp.formatting import (format_section, format_resource,
                                  format_combine_number_resource)
-from coursera.utils import total_seconds, is_course_complete
+from cs_dlp.utils import total_seconds, is_course_complete
 
 
 @pytest.mark.parametrize(

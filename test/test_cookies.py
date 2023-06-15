@@ -9,7 +9,7 @@ import os.path
 import requests
 from http import cookiejar as cookielib
 
-from coursera import cookies
+from cs_dlp import cookies
 
 FIREFOX_COOKIES = \
     os.path.join(os.path.dirname(__file__),

@@ -8,7 +8,7 @@ import os.path
 
 import pytest
 
-from coursera import credentials
+from cs_dlp import credentials
 
 
 def test_get_credentials_with_username_and_password_given():

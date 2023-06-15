@@ -5,8 +5,8 @@ import os
 import re
 from io import open
 
-from coursera.define import IN_MEMORY_MARKER
-from coursera.utils import BeautifulSoup
+from cs_dlp.define import IN_MEMORY_MARKER
+from cs_dlp.utils import BeautifulSoup
 
 
 def slurp_fixture(path):

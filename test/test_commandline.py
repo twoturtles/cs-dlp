@@ -2,8 +2,8 @@
 Test command line module.
 """
 
-from coursera import commandline
-from coursera.test import test_workflow
+from cs_dlp import commandline
+from . import test_workflow
 
 
 def test_class_name_arg_required():

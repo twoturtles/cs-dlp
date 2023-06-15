@@ -3,10 +3,10 @@ import pytest
 import requests
 from requests.exceptions import RequestException
 
-from coursera.workflow import CourseraDownloader, _iter_modules, _walk_modules
-from coursera.commandline import parse_args
-from coursera.parallel import ConsecutiveDownloader, ParallelDownloader
-from coursera.downloaders import Downloader
+from cs_dlp.workflow import CourseraDownloader, _iter_modules, _walk_modules
+from cs_dlp.commandline import parse_args
+from cs_dlp.parallel import ConsecutiveDownloader, ParallelDownloader
+from cs_dlp.downloaders import Downloader
 
 
 class MockedCommandLineArgs(object):
