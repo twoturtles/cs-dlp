@@ -34,8 +34,8 @@ def get_credentials(username=None, password=None):
 
     if not username:
         raise CredentialsError(
-            'Please provide a username with the -u option, '
-            'or a CAUTH cookie with the --cauth option')
+            'Please provide a CAUTH cookie with the --cauth option, '
+            'or a browser to extract CAUTH cookie from with --cauth-auto option')
 
     if not password:
         password = getpass.getpass('Coursera password for {0}: '.format(username))
