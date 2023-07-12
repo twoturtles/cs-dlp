@@ -25,19 +25,3 @@ def _getenv_or_empty(s):
     """
     return os.getenv(s) or ""
 
-def get_credentials(username=None, password=None):
-    """
-    Return valid username, password tuple.
-
-    Raises CredentialsError if username or password is missing.
-    """
-
-    if not username:
-        raise CredentialsError(
-            'Please provide a CAUTH cookie with the --cauth option, '
-            'or a browser to extract CAUTH cookie from with --cauth-auto option')
-
-    if not password:
-        password = getpass.getpass('Coursera password for {0}: '.format(username))
-
-    return username, password

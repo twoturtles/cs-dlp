@@ -54,22 +54,6 @@ def parse_args(args=None):
         help='name(s) of the class(es) (e.g. "ml-005")')
 
     group_basic.add_argument(
-        '-u',
-        '--username',
-        dest='username',
-        action='store',
-        default=None,
-        help='username (email) that you use to login to Coursera')
-
-    group_basic.add_argument(
-        '-p',
-        '--password',
-        dest='password',
-        action='store',
-        default=None,
-        help='coursera password')
-
-    group_basic.add_argument(
         '--jobs',
         dest='jobs',
         action='store',
@@ -492,11 +476,7 @@ def parse_args(args=None):
         sys.exit(1)
 
     if not args.cookies_file and not args.cookies_cauth and not args.browser:
-        try:
-            args.username, args.password = get_credentials(
-                username=args.username, password=args.password)
-        except CredentialsError as e:
-            logging.error(e)
-            sys.exit(1)
+        logging.error("Please provide a CAUTH cookie (see -ca, -caa options)")
+        sys.exit(1)
 
     return args
