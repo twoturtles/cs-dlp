@@ -7,6 +7,7 @@ import os
 import sys
 import logging
 import configargparse as argparse
+import re
 
 from . import __version__
 
@@ -459,6 +460,16 @@ def parse_args(args=None):
         parser.print_usage()
         logging.error('You must supply at least one class name')
         sys.exit(1)
+
+    if args.class_names:
+        for i, class_name in enumerate(args.class_names):
+            if class_name.startswith("http") or class_name.startswith("www"):
+                res = re.match(r".*\.coursera\.org/learn/(.+?)(/|$)", class_name)
+                if not res:
+                    logging.error('Argument looks like an URL but I can\'t extract class name from it')
+                    sys.exit(1)
+            args.class_names[i] = res.group(1)
+            logging.info(f'Extracted class name "{args.class_names[i]}" from URL')
 
     # show version?
     if args.version:
