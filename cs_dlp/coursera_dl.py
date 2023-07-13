@@ -166,7 +166,7 @@ def download_on_demand_class(session, args, class_name):
     error_occurred = False
     extractor = CourseraExtractor(session)
 
-    cached_syllabus_filename = '%s-syllabus-parsed.json' % class_name
+    cached_syllabus_filename = os.path.join(class_name, class_name+'-syllabus-parsed.json')
     if args.cache_syllabus and os.path.isfile(cached_syllabus_filename):
         modules = slurp_json(cached_syllabus_filename)
     else:
