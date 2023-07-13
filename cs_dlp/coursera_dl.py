@@ -213,14 +213,22 @@ def download_on_demand_class(session, args, class_name):
     # Print skipped URLs if any
     if course_downloader.skipped_urls:
         print_skipped_urls(course_downloader.skipped_urls)
+        fp = os.path.join(class_name, "skipped_urls.json")
+        write_urls_to_file(course_downloader.skipped_urls, fp)
 
     # Print failed URLs if any
     # FIXME: should we set non-zero exit code if we have failed URLs?
     if course_downloader.failed_urls:
         print_failed_urls(course_downloader.failed_urls)
+        fp = os.path.join(class_name, "failed_urls.json")
+        write_urls_to_file(course_downloader.failed_urls, fp)
 
     return error_occurred, completed
 
+def write_urls_to_file(urls, fp):
+    with open(fp, "w", encoding="utf8") as fh:
+        for url in urls:
+            fh.write(url+"\n")
 
 def print_skipped_urls(skipped_urls):
     logging.info('The following URLs (%d) have been skipped and not '
