@@ -131,9 +131,6 @@ installed in your system. Prefer to use the option `--user` to `pip install`.
 <!--     courseradl/courseradl -n /netrc -->
 <!-- ``` -->
 
-<!-- The actual working dir for coursera-dl is /courses, all courses will be -->
-<!-- downloaded there if you don't specify otherwise. -->
-
 ## Create an account with Coursera
 
 If you don't already have one, create a [Coursera][1] account and enroll in
@@ -175,7 +172,7 @@ Run the script to download the materials by providing your Coursera CAUTH cookie
 the class names, as well as any additional parameters:
 
 ```
-coursera-dl --cauth-auto chrome modelthinking-004
+cs-dlp --cauth-auto chrome modelthinking-004
 ```
 
 Here are some examples of how to invoke `cs-dlp` from the command line:
@@ -191,7 +188,7 @@ Here are some examples of how to invoke `cs-dlp` from the command line:
 
     Maintain a list of classes in a dir:
       Initialize:              mkdir -p CURRENT/{class1,class2,..classN}
-      Update:                  coursera-dl -n --path CURRENT `\ls CURRENT`
+      Update:                  cs-dlp -n --path CURRENT `\ls CURRENT`
 ```
 **Note:** If your `ls` command is aliased to display a colorized output, you
 may experience problems.  Be sure to escape the `ls` command (use `\ls`) to
