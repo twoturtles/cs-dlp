@@ -452,8 +452,8 @@ def parse_args(args=None):
                 if not res:
                     logging.error('Argument looks like an URL but I can\'t extract class name from it')
                     sys.exit(1)
-            args.class_names[i] = res.group(1)
-            logging.info(f'Extracted class name "{args.class_names[i]}" from URL')
+                args.class_names[i] = res.group(1)
+                logging.info(f'Extracted class name "{args.class_names[i]}" from URL')
 
     # show version?
     if args.version:
