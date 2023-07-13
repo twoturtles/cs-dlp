@@ -11,7 +11,7 @@ import re
 
 from . import __version__
 
-from .credentials import get_credentials, CredentialsError
+from .credentials import CredentialsError
 
 LOCAL_CONF_FILE_NAME = 'coursera-dl.conf'
 
