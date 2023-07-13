@@ -18,6 +18,9 @@ import time
 
 import requests
 
+class DownloadTooManyAttemptsError(Exception):
+    pass
+
 #
 # Below are file downloaders, they are wrappers for external downloaders.
 #
@@ -49,7 +52,7 @@ class Downloader(object):
         """
 
         try:
-            self._start_download(url, filename, resume)
+            return self._start_download(url, filename, resume)
         except KeyboardInterrupt as e:
             # keep the file if resume is True
             if not resume:
@@ -395,7 +398,7 @@ class NativeDownloader(Downloader):
         if attempts_count == max_attempts:
             logging.warn('Skipping, can\'t download file ...')
             logging.error(error_msg)
-            return False
+            raise DownloadTooManyAttemptsError()
 
 
 def get_downloader(session, class_name, args):
