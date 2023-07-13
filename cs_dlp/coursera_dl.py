@@ -67,7 +67,8 @@ from .parallel import ConsecutiveDownloader, ParallelDownloader
 from .utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
                     print_ssl_error_message,
                     BeautifulSoup, is_debug_run,
-                    spit_json, slurp_json)
+                    spit_json, slurp_json,
+                    normalize_path)
 
 from .api import expand_specializations
 from .network import get_page, get_page_and_url
@@ -170,6 +171,7 @@ def download_on_demand_class(session, args, class_name):
     if args.cache_syllabus and os.path.isfile(cached_syllabus_filename):
         modules = slurp_json(cached_syllabus_filename)
     else:
+        mkdir_p(normalize_path(os.path.dirname(cached_syllabus_filename)))
         error_occurred, modules = extractor.get_modules(
             class_name,
             args.reverse,
