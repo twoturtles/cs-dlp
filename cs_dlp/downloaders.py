@@ -321,8 +321,9 @@ class NativeDownloader(Downloader):
     :param session: Requests session.
     """
 
-    def __init__(self, session):
+    def __init__(self, session, args):
         self.session = session
+        self.args = args
 
     def _start_download(self, url, filename, resume=False):
         # resume has no meaning if the file doesn't exists!
@@ -341,7 +342,7 @@ class NativeDownloader(Downloader):
         attempts_count = 0
         error_msg = ''
         while attempts_count < max_attempts:
-            r = self.session.get(url, stream=True, headers=headers)
+            r = self.session.get(url, stream=True, headers=headers, timeout=self.args.request_download_timeout)
 
             if r.status_code != 200:
                 # because in resume state we are downloading only a
@@ -418,4 +419,4 @@ def get_downloader(session, class_name, args):
             return class_(session, bin=getattr(args, bin),
                           downloader_arguments=args.downloader_arguments)
 
-    return NativeDownloader(session)
+    return NativeDownloader(session, args)
