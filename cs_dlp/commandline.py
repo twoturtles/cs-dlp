@@ -321,6 +321,14 @@ def parse_args(args=None):
         default=False,
         help='Do not limit filenames to be ASCII-only')
 
+    parser.add_argument(
+        '--request-download-timeout',
+        dest='request_download_timeout',
+        action='store',
+        default=None,
+        type=int,
+        help='Number of seconds to wait before ignoring the url. (Default: infinite)')
+
     # Advanced authentication
     group_adv_auth = parser.add_argument_group(
         'Advanced authentication options')
