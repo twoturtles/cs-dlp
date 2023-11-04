@@ -11,7 +11,6 @@ import base64
 import logging
 import time
 import requests
-import urllib
 
 from collections import namedtuple, OrderedDict
 from urllib.parse import quote_plus
@@ -26,9 +25,7 @@ from .define import (OPENCOURSE_SUPPLEMENT_URL,
                      OPENCOURSE_ASSET_URL,
                      OPENCOURSE_ASSETS_URL,
                      OPENCOURSE_API_ASSETS_V1_URL,
-                     OPENCOURSE_ONDEMAND_COURSE_MATERIALS,
                      OPENCOURSE_ONDEMAND_COURSE_MATERIALS_V2,
-                     OPENCOURSE_ONDEMAND_COURSES_V1,
                      OPENCOURSE_ONDEMAND_LECTURE_VIDEOS_URL,
                      OPENCOURSE_ONDEMAND_LECTURE_ASSETS_URL,
                      OPENCOURSE_ONDEMAND_SPECIALIZATIONS_V1,
