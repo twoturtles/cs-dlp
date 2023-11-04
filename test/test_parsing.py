@@ -11,9 +11,8 @@ import pytest
 
 from mock import patch, Mock, mock_open
 
-from cs_dlp import coursera_dl
+import main
 from cs_dlp import api
-from cs_dlp.define import IN_MEMORY_EXTENSION, IN_MEMORY_MARKER
 
 
 # JSon Handling

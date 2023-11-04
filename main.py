@@ -42,10 +42,8 @@ For further documentation and examples, visit the project's home at:
 """
 
 
-import json
 import logging
 import os
-import re
 import time
 import shutil
 
@@ -57,25 +55,25 @@ from distutils.version import LooseVersion as V
 import bs4
 import requests
 
-from .cookies import (
+from cs_dlp.cookies import (
     AuthenticationFailed, ClassNotFound,
     get_cookies_for_class, make_cookie_values, TLSAdapter, login)
-from .define import (CLASS_URL, ABOUT_URL, PATH_CACHE)
-from .downloaders import get_downloader
-from .workflow import CourseraDownloader
-from .parallel import ConsecutiveDownloader, ParallelDownloader
-from .utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
-                    print_ssl_error_message,
-                    BeautifulSoup, is_debug_run,
-                    spit_json, slurp_json,
-                    normalize_path)
+from cs_dlp.define import (CLASS_URL, ABOUT_URL, PATH_CACHE)
+from cs_dlp.downloaders import get_downloader
+from cs_dlp.workflow import CourseraDownloader
+from cs_dlp.parallel import ConsecutiveDownloader, ParallelDownloader
+from cs_dlp.utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
+                          print_ssl_error_message,
+                          BeautifulSoup, is_debug_run,
+                          spit_json, slurp_json,
+                          normalize_path)
 
-from .api import expand_specializations
-from .network import get_page, get_page_and_url
-from .commandline import parse_args
-from .extractors import CourseraExtractor
+from cs_dlp.api import expand_specializations
+from cs_dlp.network import get_page, get_page_and_url
+from cs_dlp.commandline import parse_args
+from cs_dlp.extractors import CourseraExtractor
 
-from . import __version__
+from cs_dlp import __version__
 
 
 # URL containing information about outdated modules

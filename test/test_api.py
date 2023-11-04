@@ -1,14 +1,13 @@
 """
 Test APIs.
 """
-from os.path import expanduser
 import json
 
 import pytest
 from mock import patch, Mock
 
 from cs_dlp import api, define
-from cs_dlp.coursera_dl import create_session
+from main import create_session
 from .utils import slurp_fixture, links_to_plain_text
 from cs_dlp.utils import BeautifulSoup
 
@@ -602,7 +601,6 @@ def test_quiz_converter_all():
     import os
 
     from coursera.coursera_dl import get_session
-    from coursera.cookies import login
     session = None
     session = get_session()
 

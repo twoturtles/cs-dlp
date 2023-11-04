@@ -5,7 +5,6 @@ Test the downloaders.
 """
 
 from cs_dlp import downloaders
-from cs_dlp import coursera_dl
 from cs_dlp.filtering import find_resources_to_get
 
 import pytest

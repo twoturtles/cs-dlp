@@ -15,7 +15,7 @@ import requests
 from mock import Mock
 
 from cs_dlp import utils
-from cs_dlp import coursera_dl
+import main
 from cs_dlp import api
 from .utils import slurp_fixture
 from cs_dlp.formatting import (format_section, format_resource,
