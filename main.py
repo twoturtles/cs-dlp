@@ -127,7 +127,7 @@ def create_session(args):
                 if cookie.name =='CAUTH':
                     return cookie.value
             else:
-                raise Exception('Can not find CAUTH in {args.browser}')
+                raise Exception(f'Can not find CAUTH in {args.browser}')
         cauth_cookie = autocookie(args.browser)
         logging.debug(f'Got CAUTH cookie from {args.browser}: "{cauth_cookie}"')
         session.cookies.set('CAUTH', cauth_cookie)
