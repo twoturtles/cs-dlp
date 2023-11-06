@@ -102,7 +102,7 @@ the command:
 
     git clone https://github.com/raffaem/cs-dlp
     cd cs-dlp
-    pip install --user .
+    python -m pip install --user .
 
 **Note 1:** We strongly recommend that you *don't* install the package
 globally on your machine (i.e., with root/administrator privileges), as the
