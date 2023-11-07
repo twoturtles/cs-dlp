@@ -56,7 +56,7 @@ dev = [
 ]
 
 [project.scripts]
-cs-dlp = "cs_dlp.coursera_dl:main"
+cs-dlp = "main:main"
 
 [project.urls]
 Homepage = "https://github.com/raffaem/cs-dlp"
