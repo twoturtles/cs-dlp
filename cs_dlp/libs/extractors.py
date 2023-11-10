@@ -9,11 +9,11 @@ import abc
 import json
 import logging
 
-from .api import (CourseraOnDemand, OnDemandCourseMaterialItemsV1,
+from cs_dlp.libs.api import (CourseraOnDemand, OnDemandCourseMaterialItemsV1,
                   ModulesV1, LessonsV1, ItemsV2)
-from .define import OPENCOURSE_ONDEMAND_COURSE_MATERIALS_V2
-from .network import get_page
-from .utils import is_debug_run, spit_json
+from cs_dlp.libs.define import OPENCOURSE_ONDEMAND_COURSE_MATERIALS_V2
+from cs_dlp.libs.network import get_page
+from cs_dlp.libs.utils import is_debug_run, spit_json
 
 
 class PlatformExtractor(object):

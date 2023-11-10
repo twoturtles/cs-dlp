@@ -53,25 +53,24 @@ import shutil
 import bs4
 import requests
 
-from cs_dlp.cookies import (
+from cs_dlp.libs.cookies import (
     AuthenticationFailed, ClassNotFound,
     get_cookies_for_class, make_cookie_values, TLSAdapter, login)
-from cs_dlp.define import (CLASS_URL, ABOUT_URL, PATH_CACHE)
-from cs_dlp.downloaders import get_downloader
-from cs_dlp.workflow import CourseraDownloader
-from cs_dlp.parallel import ConsecutiveDownloader, ParallelDownloader
-from cs_dlp.utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
+from cs_dlp.libs.define import (CLASS_URL, ABOUT_URL, PATH_CACHE)
+from cs_dlp.libs.downloaders import get_downloader
+from cs_dlp.libs.workflow import CourseraDownloader
+from cs_dlp.libs.parallel import ConsecutiveDownloader, ParallelDownloader
+from cs_dlp.libs.utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
                           print_ssl_error_message,
                           BeautifulSoup, is_debug_run,
                           spit_json, slurp_json,
                           normalize_path)
 
-from cs_dlp.api import expand_specializations
-from cs_dlp.network import get_page, get_page_and_url
-from cs_dlp.commandline import parse_args
-from cs_dlp.extractors import CourseraExtractor
-
-from cs_dlp import __version__
+from cs_dlp.libs.api import expand_specializations
+from cs_dlp.libs.network import get_page, get_page_and_url
+from cs_dlp.libs.commandline import parse_args
+from cs_dlp.libs.extractors import CourseraExtractor
+from cs_dlp.libs.version import __version__
 
 
 # URL containing information about outdated modules

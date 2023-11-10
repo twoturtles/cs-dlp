@@ -9,9 +9,8 @@ import logging
 import configargparse as argparse
 import re
 
-from . import __version__
-
-from .credentials import CredentialsError
+from cs_dlp.libs.version import __version__
+from cs_dlp.libs.credentials import CredentialsError
 
 LOCAL_CONF_FILE_NAME = 'coursera-dl.conf'
 

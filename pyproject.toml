@@ -56,20 +56,16 @@ dev = [
 ]
 
 [project.scripts]
-cs-dlp = "main:main"
+cs-dlp = "cs_dlp.main:main"
 
 [project.urls]
 Homepage = "https://github.com/raffaem/cs-dlp"
 
 [tool.hatch.version]
-path = "cs_dlp/__init__.py"
+path = "cs_dlp/libs/version.py"
 
-[tool.hatch.build.targets.sdist]
+[tool.hatch.build]
 include = [
-    "/cs_dlp",
-    "/test"
+    "/cs_dlp"
 ]
-
-[tool.hatch.build.targets.wheel]
-packages = ["/cs_dlp"]
 

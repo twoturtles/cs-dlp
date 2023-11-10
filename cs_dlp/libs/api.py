@@ -16,11 +16,11 @@ from collections import namedtuple, OrderedDict
 from urllib.parse import quote_plus
 import attr
 
-from .utils import (BeautifulSoup, make_coursera_absolute_url,
+from cs_dlp.libs.utils import (BeautifulSoup, make_coursera_absolute_url,
                     extend_supplement_links, clean_url, clean_filename,
                     is_debug_run, unescape_html)
-from .network import get_reply, get_page, post_page_and_reply
-from .define import (OPENCOURSE_SUPPLEMENT_URL,
+from cs_dlp.libs.network import get_reply, get_page, post_page_and_reply
+from cs_dlp.libs.define import (OPENCOURSE_SUPPLEMENT_URL,
                      OPENCOURSE_PROGRAMMING_ASSIGNMENTS_URL,
                      OPENCOURSE_ASSET_URL,
                      OPENCOURSE_ASSETS_URL,
@@ -54,7 +54,7 @@ from .define import (OPENCOURSE_SUPPLEMENT_URL,
                      IN_MEMORY_MARKER)
 
 
-from .cookies import prepare_auth_headers
+from cs_dlp.libs.cookies import prepare_auth_headers
 
 
 class QuizExamToMarkupConverter(object):

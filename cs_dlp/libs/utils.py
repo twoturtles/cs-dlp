@@ -1,3 +1,4 @@
+#!/usr/bin/env  python
 # -*- coding: utf-8 -*-
 
 """
@@ -27,7 +28,7 @@ from urllib.parse import urlparse, urljoin
 from string import ascii_letters as string_ascii_letters
 from string import digits as string_digits
 
-from .define import COURSERA_URL, WINDOWS_UNC_PREFIX
+from cs_dlp.libs.define import COURSERA_URL, WINDOWS_UNC_PREFIX
 
 # Force us of bs4 with html.parser
 
