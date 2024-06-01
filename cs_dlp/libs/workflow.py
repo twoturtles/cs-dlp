@@ -23,6 +23,7 @@ def _iter_modules(modules, class_name, path, ignored_formats, args):
     file_formats = args.file_formats
     lecture_filter = args.lecture_filter
     resource_filter = args.resource_filter
+    resource_skip = args.resource_skip
     section_filter = args.section_filter
     verbose_dirs = args.verbose_dirs
     combined_section_lectures_nums = args.combined_section_lectures_nums
@@ -81,7 +82,7 @@ def _iter_modules(modules, class_name, path, ignored_formats, args):
         @property
         def resources(self):
             resources_to_get = find_resources_to_get(
-                self._lecture, file_formats, resource_filter,
+                self._lecture, file_formats, resource_filter, resource_skip,
                 ignored_formats)
 
             for fmt, url, title in resources_to_get:

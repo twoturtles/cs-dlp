@@ -193,6 +193,15 @@ def parse_args(args=None):
         ' (default: disabled)')
 
     group_material.add_argument(
+        '-rs',
+        '--resource_skip',
+        dest='resource_skip',
+        action='store',
+        default=None,
+        help='skip resources which match this regex'
+        ' (default: disabled)')
+
+    group_material.add_argument(
         '--video-resolution',
         dest='video_resolution',
         action='store',

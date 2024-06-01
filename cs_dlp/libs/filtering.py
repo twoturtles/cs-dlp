@@ -80,7 +80,7 @@ def skip_format_url(format_, url):
     return False
 
 
-def find_resources_to_get(lecture, file_formats, resource_filter, ignored_formats=None):
+def find_resources_to_get(lecture, file_formats, resource_filter, resource_skip, ignored_formats=None):
     """
     Select formats to download.
     """
@@ -107,6 +107,10 @@ def find_resources_to_get(lecture, file_formats, resource_filter, ignored_format
                 if resource_filter and r[1] and not re.search(resource_filter, r[1]):
                     logging.debug('Skipping b/c of rf: %s %s',
                                   resource_filter, r[1])
+                    continue
+                if resource_skip and r[1] and re.search(resource_skip, r[1]):
+                    logging.debug('Skipping b/c of rs: %s %s',
+                                  resource_skip, r[1])
                     continue
                 resources_to_get.append((fmt0, r[0], r[1]))
         else:
